@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         _characterController.Move(_playerVelocity * Time.deltaTime);
       
-        if (Input.GetKey(KeyCode.LeftShift))
+       /* if (Input.GetKey(KeyCode.LeftShift))
         { 
             anim.SetInteger(ahVelocidad, Mathf.FloorToInt(velocidad) * 2 );
             _characterController.Move(move * Time.deltaTime * _speed);
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         { 
             anim.Play("DAMAGED"); 
         }
+        */
     }
 
 }
