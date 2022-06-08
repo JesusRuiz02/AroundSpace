@@ -1,5 +1,5 @@
-
 using UnityEngine;
+using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(0,1,0 *Time.deltaTime * 0.1f);  
+            transform.Rotate(0,1,0 *Time.deltaTime * 0.1f);
         }
         if (Input.GetKey(KeyCode.D))
         {
