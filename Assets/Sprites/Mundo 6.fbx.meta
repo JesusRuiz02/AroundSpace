@@ -1,0 +1,425 @@
+fileFormatVersion: 2
+guid: cbf202c31bc43ec45a34215f71e5599d
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: 9097257738152874395
+    second: Cube.015|Cube.002|Cube.002|Cube.002Action|Cube.002|Cube.002Action
+  - first:
+      74: 4099008453634932238
+    second: Cube.015|Cube.002|Cube.002|Cube.003Action|Cube.002|Cube.003Action
+  - first:
+      74: -5344514123374988450
+    second: Cube.015|Cube.002|Cube.002|Cube.008Action|Cube.002|Cube.008Action
+  - first:
+      74: -3674706350638074880
+    second: Cube.015|Cube.002|Cube.002|Cube.009Action|Cube.002|Cube.009Action
+  - first:
+      74: 3723840943492994989
+    second: Cube.015|Cube.002|Cube.002|Shader NodetreeAction.001|Cube.002|Shader
+      Nod
+  - first:
+      74: 5991160448015383828
+    second: Cube.015|Cube.002|Cube.002|Shader NodetreeAction.002|Cube.002|Shader
+      Nod
+  - first:
+      74: 6674229164024486819
+    second: Cube.015|Cube.003|Cube.003|Cube.002Action|Cube.003|Cube.002Action
+  - first:
+      74: 8049945532188170658
+    second: Cube.015|Cube.003|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: -7967183535651801606
+    second: Cube.015|Cube.003|Cube.003|Cube.008Action|Cube.003|Cube.008Action
+  - first:
+      74: -8712782133158998720
+    second: Cube.015|Cube.003|Cube.003|Cube.009Action|Cube.003|Cube.009Action
+  - first:
+      74: -2994201321285370503
+    second: Cube.015|Cube.003|Cube.003|Shader NodetreeAction.001|Cube.003|Shader
+      Nod
+  - first:
+      74: -7003610822099991026
+    second: Cube.015|Cube.003|Cube.003|Shader NodetreeAction.002|Cube.003|Shader
+      Nod
+  - first:
+      74: 2416790043394996559
+    second: Cube.015|Cube.014|Cube.014|Cube.002Action|Cube.014|Cube.002Action
+  - first:
+      74: -7871344685576114647
+    second: Cube.015|Cube.014|Cube.014|Cube.003Action|Cube.014|Cube.003Action
+  - first:
+      74: 7627002532970041295
+    second: Cube.015|Cube.014|Cube.014|Cube.008Action|Cube.014|Cube.008Action
+  - first:
+      74: 6457093895673018641
+    second: Cube.015|Cube.014|Cube.014|Cube.009Action|Cube.014|Cube.009Action
+  - first:
+      74: -1582894771770411554
+    second: Cube.015|Cube.014|Cube.014|Shader NodetreeAction.001|Cube.014|Shader
+      Nod
+  - first:
+      74: 5758882558979221451
+    second: Cube.015|Cube.014|Cube.014|Shader NodetreeAction.002|Cube.014|Shader
+      Nod
+  - first:
+      74: 1966344570887451143
+    second: Cube.015|Cube.015|Cube.015|Cube.002Action|Cube.015|Cube.002Action
+  - first:
+      74: -520887585979044061
+    second: Cube.015|Cube.015|Cube.015|Cube.003Action|Cube.015|Cube.003Action
+  - first:
+      74: 2919022909789760262
+    second: Cube.015|Cube.015|Cube.015|Cube.008Action|Cube.015|Cube.008Action
+  - first:
+      74: -7388327438490329093
+    second: Cube.015|Cube.015|Cube.015|Cube.009Action|Cube.015|Cube.009Action
+  - first:
+      74: 6861045899375539943
+    second: Cube.015|Cube.015|Cube.015|Shader NodetreeAction.001|Cube.015|Shader
+      Nod
+  - first:
+      74: -960258986855524244
+    second: Cube.015|Cube.015|Cube.015|Shader NodetreeAction.002|Cube.015|Shader
+      Nod
+  - first:
+      74: -5837318059713818162
+    second: Cube.014|Cube.002|Cube.002|Cube.002Action|Cube.002|Cube.002Action
+  - first:
+      74: 3770176761159953152
+    second: Cube.014|Cube.002|Cube.002|Cube.003Action|Cube.002|Cube.003Action
+  - first:
+      74: 7245323378431605552
+    second: Cube.014|Cube.002|Cube.002|Cube.008Action|Cube.002|Cube.008Action
+  - first:
+      74: 2089863810808065639
+    second: Cube.014|Cube.002|Cube.002|Cube.009Action|Cube.002|Cube.009Action
+  - first:
+      74: 7966745637913539635
+    second: Cube.014|Cube.002|Cube.002|Shader NodetreeAction.001|Cube.002|Shader
+      Nod
+  - first:
+      74: 1030138636823693156
+    second: Cube.014|Cube.002|Cube.002|Shader NodetreeAction.002|Cube.002|Shader
+      Nod
+  - first:
+      74: -2025522869168451058
+    second: Cube.014|Cube.003|Cube.003|Cube.002Action|Cube.003|Cube.002Action
+  - first:
+      74: 6326380043009810313
+    second: Cube.014|Cube.003|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: 783731302793909878
+    second: Cube.014|Cube.003|Cube.003|Cube.008Action|Cube.003|Cube.008Action
+  - first:
+      74: -7449707373479956731
+    second: Cube.014|Cube.003|Cube.003|Cube.009Action|Cube.003|Cube.009Action
+  - first:
+      74: -3002110207331097426
+    second: Cube.014|Cube.003|Cube.003|Shader NodetreeAction.001|Cube.003|Shader
+      Nod
+  - first:
+      74: -8455123464403686999
+    second: Cube.014|Cube.003|Cube.003|Shader NodetreeAction.002|Cube.003|Shader
+      Nod
+  - first:
+      74: 549401328005213821
+    second: Cube.014|Cube.014|Cube.014|Cube.002Action|Cube.014|Cube.002Action
+  - first:
+      74: -8977280108329308122
+    second: Cube.014|Cube.014|Cube.014|Cube.003Action|Cube.014|Cube.003Action
+  - first:
+      74: 6513144590046104151
+    second: Cube.014|Cube.014|Cube.014|Cube.008Action|Cube.014|Cube.008Action
+  - first:
+      74: 4910309179878387052
+    second: Cube.014|Cube.014|Cube.014|Cube.009Action|Cube.014|Cube.009Action
+  - first:
+      74: 5100688157515057693
+    second: Cube.014|Cube.014|Cube.014|Shader NodetreeAction.001|Cube.014|Shader
+      Nod
+  - first:
+      74: -7831774539342205679
+    second: Cube.014|Cube.014|Cube.014|Shader NodetreeAction.002|Cube.014|Shader
+      Nod
+  - first:
+      74: -4884043757093015021
+    second: Cube.014|Cube.015|Cube.015|Cube.002Action|Cube.015|Cube.002Action
+  - first:
+      74: -986652628910201211
+    second: Cube.014|Cube.015|Cube.015|Cube.003Action|Cube.015|Cube.003Action
+  - first:
+      74: 3365219955219962464
+    second: Cube.014|Cube.015|Cube.015|Cube.008Action|Cube.015|Cube.008Action
+  - first:
+      74: 3380354832153887260
+    second: Cube.014|Cube.015|Cube.015|Cube.009Action|Cube.015|Cube.009Action
+  - first:
+      74: -968216150994333036
+    second: Cube.014|Cube.015|Cube.015|Shader NodetreeAction.001|Cube.015|Shader
+      Nod
+  - first:
+      74: 1694535949867068169
+    second: Cube.014|Cube.015|Cube.015|Shader NodetreeAction.002|Cube.015|Shader
+      Nod
+  - first:
+      74: -3051626159773021640
+    second: Arbol.002|Cube.002|Cube.002|Cube.002Action|Cube.002|Cube.002Action
+  - first:
+      74: -3241618955403479643
+    second: Arbol.002|Cube.002|Cube.002|Cube.003Action|Cube.002|Cube.003Action
+  - first:
+      74: -3738437936579077182
+    second: Arbol.002|Cube.002|Cube.002|Cube.008Action|Cube.002|Cube.008Action
+  - first:
+      74: 7557842389262436971
+    second: Arbol.002|Cube.002|Cube.002|Cube.009Action|Cube.002|Cube.009Action
+  - first:
+      74: -826668127376828223
+    second: Arbol.002|Cube.002|Cube.002|Shader NodetreeAction.001|Cube.002|Shader
+      Nod
+  - first:
+      74: -591588358109647982
+    second: Arbol.002|Cube.002|Cube.002|Shader NodetreeAction.002|Cube.002|Shader
+      Nod
+  - first:
+      74: 177064863959299389
+    second: Arbol.002|Cube.003|Cube.003|Cube.002Action|Cube.003|Cube.002Action
+  - first:
+      74: -6202361443105487624
+    second: Arbol.002|Cube.003|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: -4118238421611185916
+    second: Arbol.002|Cube.003|Cube.003|Cube.008Action|Cube.003|Cube.008Action
+  - first:
+      74: -6109100948200366616
+    second: Arbol.002|Cube.003|Cube.003|Cube.009Action|Cube.003|Cube.009Action
+  - first:
+      74: -7264489018992362488
+    second: Arbol.002|Cube.003|Cube.003|Shader NodetreeAction.001|Cube.003|Shader
+      Nod
+  - first:
+      74: -4590070293969675604
+    second: Arbol.002|Cube.003|Cube.003|Shader NodetreeAction.002|Cube.003|Shader
+      Nod
+  - first:
+      74: 8478822924250720880
+    second: Arbol.002|Cube.014|Cube.014|Cube.002Action|Cube.014|Cube.002Action
+  - first:
+      74: 3768597247113093871
+    second: Arbol.002|Cube.014|Cube.014|Cube.003Action|Cube.014|Cube.003Action
+  - first:
+      74: 4275849155775753172
+    second: Arbol.002|Cube.014|Cube.014|Cube.008Action|Cube.014|Cube.008Action
+  - first:
+      74: 9081938819887846275
+    second: Arbol.002|Cube.014|Cube.014|Cube.009Action|Cube.014|Cube.009Action
+  - first:
+      74: 5198672054590048909
+    second: Arbol.002|Cube.014|Cube.014|Shader NodetreeAction.001|Cube.014|Shader
+      Nod
+  - first:
+      74: 5967277816948096098
+    second: Arbol.002|Cube.014|Cube.014|Shader NodetreeAction.002|Cube.014|Shader
+      Nod
+  - first:
+      74: 1816974736503966829
+    second: Arbol.002|Cube.015|Cube.015|Cube.002Action|Cube.015|Cube.002Action
+  - first:
+      74: -4557724470696500519
+    second: Arbol.002|Cube.015|Cube.015|Cube.003Action|Cube.015|Cube.003Action
+  - first:
+      74: -6237895082611149566
+    second: Arbol.002|Cube.015|Cube.015|Cube.008Action|Cube.015|Cube.008Action
+  - first:
+      74: -8841917256225012832
+    second: Arbol.002|Cube.015|Cube.015|Cube.009Action|Cube.015|Cube.009Action
+  - first:
+      74: 4991768463515234624
+    second: Arbol.002|Cube.015|Cube.015|Shader NodetreeAction.001|Cube.015|Shader
+      Nod
+  - first:
+      74: 523047844556881415
+    second: Arbol.002|Cube.015|Cube.015|Shader NodetreeAction.002|Cube.015|Shader
+      Nod
+  - first:
+      74: 4874639226477715096
+    second: Arbol.001|Cube.002|Cube.002|Cube.002Action|Cube.002|Cube.002Action
+  - first:
+      74: 864222378871836260
+    second: Arbol.001|Cube.002|Cube.002|Cube.003Action|Cube.002|Cube.003Action
+  - first:
+      74: -40125349754761357
+    second: Arbol.001|Cube.002|Cube.002|Cube.008Action|Cube.002|Cube.008Action
+  - first:
+      74: 779809853068729485
+    second: Arbol.001|Cube.002|Cube.002|Cube.009Action|Cube.002|Cube.009Action
+  - first:
+      74: -1693499389714118020
+    second: Arbol.001|Cube.002|Cube.002|Shader NodetreeAction.001|Cube.002|Shader
+      Nod
+  - first:
+      74: -8019782943687480103
+    second: Arbol.001|Cube.002|Cube.002|Shader NodetreeAction.002|Cube.002|Shader
+      Nod
+  - first:
+      74: 1349710285134036715
+    second: Arbol.001|Cube.003|Cube.003|Cube.002Action|Cube.003|Cube.002Action
+  - first:
+      74: -1156530196004652683
+    second: Arbol.001|Cube.003|Cube.003|Cube.003Action|Cube.003|Cube.003Action
+  - first:
+      74: 5939470817210570722
+    second: Arbol.001|Cube.003|Cube.003|Cube.008Action|Cube.003|Cube.008Action
+  - first:
+      74: 7722445356883470879
+    second: Arbol.001|Cube.003|Cube.003|Cube.009Action|Cube.003|Cube.009Action
+  - first:
+      74: 1187486673097994760
+    second: Arbol.001|Cube.003|Cube.003|Shader NodetreeAction.001|Cube.003|Shader
+      Nod
+  - first:
+      74: -4544387644797823426
+    second: Arbol.001|Cube.003|Cube.003|Shader NodetreeAction.002|Cube.003|Shader
+      Nod
+  - first:
+      74: 7126744948678720989
+    second: Arbol.001|Cube.014|Cube.014|Cube.002Action|Cube.014|Cube.002Action
+  - first:
+      74: -6844949894584482874
+    second: Arbol.001|Cube.014|Cube.014|Cube.003Action|Cube.014|Cube.003Action
+  - first:
+      74: -7926426731003375609
+    second: Arbol.001|Cube.014|Cube.014|Cube.008Action|Cube.014|Cube.008Action
+  - first:
+      74: 4442448224404501604
+    second: Arbol.001|Cube.014|Cube.014|Cube.009Action|Cube.014|Cube.009Action
+  - first:
+      74: 8599285424883215738
+    second: Arbol.001|Cube.014|Cube.014|Shader NodetreeAction.001|Cube.014|Shader
+      Nod
+  - first:
+      74: -3814693450661573570
+    second: Arbol.001|Cube.014|Cube.014|Shader NodetreeAction.002|Cube.014|Shader
+      Nod
+  - first:
+      74: -2423893436858402494
+    second: Arbol.001|Cube.015|Cube.015|Cube.002Action|Cube.015|Cube.002Action
+  - first:
+      74: -5530410541982379997
+    second: Arbol.001|Cube.015|Cube.015|Cube.003Action|Cube.015|Cube.003Action
+  - first:
+      74: 8314490257866044247
+    second: Arbol.001|Cube.015|Cube.015|Cube.008Action|Cube.015|Cube.008Action
+  - first:
+      74: 962163984391788683
+    second: Arbol.001|Cube.015|Cube.015|Cube.009Action|Cube.015|Cube.009Action
+  - first:
+      74: -1418236741500316307
+    second: Arbol.001|Cube.015|Cube.015|Shader NodetreeAction.001|Cube.015|Shader
+      Nod
+  - first:
+      74: 352681457799064596
+    second: Arbol.001|Cube.015|Cube.015|Shader NodetreeAction.002|Cube.015|Shader
+      Nod
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
