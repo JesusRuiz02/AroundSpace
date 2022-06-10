@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
       //  else
       //  {
             anim.SetInteger( ahVelocidad, Mathf.FloorToInt(velocidad)); 
-            _characterController.Move(move * Time.deltaTime);
+            _characterController.Move(move * Time.deltaTime * _speed);
       //  }
     }
 
