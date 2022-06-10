@@ -8,6 +8,7 @@ public class ChangeScene : MonoBehaviour
     { 
         if(other.CompareTag("Planet"))
         {
+            Debug.Log("Hola");
             SceneManager.LoadScene(0);
         }
         else if(other.CompareTag("SpaceShip"))
