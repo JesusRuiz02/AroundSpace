@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     private PlayerTouchMovement _playerInput;
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private readonly int animVelocity = Animator.StringToHash("Velocidad");
+    private readonly float Velocidad = Animator.StringToHash("VelocidadHor");
    [SerializeField] private bool groundedPlayer;
    [SerializeField] private float playerSpeed = 2.0f;
    [SerializeField] private float jumpHeight = 1.0f;
@@ -55,7 +55,8 @@ public class PlayerController : MonoBehaviour
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
-        _animator.SetInteger(animVelocity,Mathf.FloorToInt(MovementInput.y));
+        _animator.SetFloat("VelocidadVer",move.z);
+        _animator.SetFloat("VelocidadHor",move.x);
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 

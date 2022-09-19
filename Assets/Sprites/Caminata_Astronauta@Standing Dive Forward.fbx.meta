@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67b7ac5965759434287d520c7ef634db
+guid: 8263f4bb0ddd7574aa1c7420efb8e886
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: -4791504522942941401
     second: Armature|Armature|mixamo.com|Layer0
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -21,7 +24,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -81,8 +84,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 8263f4bb0ddd7574aa1c7420efb8e886
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
