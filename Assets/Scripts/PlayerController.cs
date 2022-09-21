@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,20 +14,20 @@ public class PlayerController : MonoBehaviour
     private Animator _animator = default;
     
     [Header("Players Stats")]
-    [SerializeField] private bool groundedPlayer;
-    [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private int gravity = 25;
-    [SerializeField] private float movespeed = 4;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private bool _groundedPlayer;
+    [SerializeField] private float _rotationSpeed = 15f;
+    [SerializeField] private int _gravity = 25;
+    [SerializeField] private float _movespeed = 4;
+    [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private Transform _groundCheckPostition;
     [SerializeField] private float _radiusdetection = 0.1f;
     [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private GameObject _buttonDodge = default;
 
     private float velocityY = default;
     
     [Header("Other")]
     private Vector3 playerVelocity;
-    private readonly float Velocidad = Animator.StringToHash("VelocidadHor");
     private Transform _cameraMain = default;
     private Transform _child = default;
     private bool isDodging = false;
@@ -35,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("AnimationStuff")]
     [SerializeField] AnimationCurve dodgeCurve;
+
+    private OnScreenButton _onScreenButton;
 
     private void Awake()
     {
@@ -59,6 +64,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         dodgeTimer = 1;
         Debug.Log(dodgeTimer);
+        _buttonDodge.GetComponent<MeshRenderer>();
+       _onScreenButton = _buttonDodge.GetComponent<OnScreenButton>();
     }
 
     void Update()
@@ -77,6 +84,22 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Dodge()); //Only if the character is moving can dodge
             }
         }
+        bool activeState = _groundedPlayer;
+        StateDodgeButton(activeState);
+     /*   if (_groundedPlayer)
+        {
+            TransparentImage(0.5f);
+        }
+        else
+        {
+            TransparentImage(1f);
+        }
+       */
+    }
+
+    void StateDodgeButton(bool activateState)
+    {
+        _onScreenButton.enabled = activateState;
     }
     
     private IEnumerator Dodge()
@@ -108,39 +131,46 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerMovement()
     {
-        if (groundedPlayer)
+        if (_groundedPlayer)
         {
-            velocityY = -gravity * Time.deltaTime;
+            velocityY = -_gravity * Time.deltaTime;
             if (_playerInput.PlayerMain.Jump.triggered)
             {
-                velocityY = jumpForce;
+                velocityY = _jumpForce;
             }
         }
         else
         {
-            velocityY -= gravity * Time.deltaTime;
+            velocityY -= _gravity * Time.deltaTime;
         }
         velocityY = Mathf.Clamp(velocityY, -10, 10);
         Vector3 fallVelocity = Vector3.up * velocityY;
-        Vector3 velocity = (direction * movespeed) + fallVelocity;
+        Vector3 velocity = (direction * _movespeed) + fallVelocity;
         
         controller.Move(velocity * Time.deltaTime);
     }
     void PlayerRotation()
     {
         if (direction.magnitude == 0) return;
-        float rs = rotationSpeed;
+        float rs = _rotationSpeed;
         if (isDodging) rs = 3;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction),rs * Time.deltaTime);
     }
 
     private void GroundCheck()
     {
-        groundedPlayer = false;
+        _groundedPlayer = false;
         Collider[] collidersGround = Physics.OverlapSphere(_groundCheckPostition.position, _radiusdetection, _whatIsGround);
         if (collidersGround.Length > 0)
         {
-            groundedPlayer = true;
+            _groundedPlayer = true;
         }
     }
+
+   /* void TransparentImage(float transparetValue)
+    { Image imageButton = _buttonDodge.gameObject.GetComponent<Image>();
+     var tempColor = imageButton.tintColor;
+     tempColor.a = transparetValue;
+     imageButton.tintColor = tempColor;
+    }*/
 }

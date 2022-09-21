@@ -3655,9 +3655,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.20858955
-  m_Height: 1.0052878
+  m_Height: 0.9402765
   m_Direction: 1
-  m_Center: {x: 0, y: 0.49735612, z: -0.012863159}
+  m_Center: {x: 0, y: 0.52986175, z: -0.012863159}
 --- !u!95 &1461940738
 Animator:
   serializedVersion: 4
@@ -3690,16 +3690,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d47fbff85f59804f9872a0be44fd38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundedPlayer: 0
-  rotationSpeed: 15
-  gravity: 15
-  movespeed: 4
-  jumpForce: 10
+  _groundedPlayer: 0
+  _rotationSpeed: 15
+  _gravity: 25
+  _movespeed: 4
+  _jumpForce: 10
   _groundCheckPostition: {fileID: 1312480498}
   _radiusdetection: 0.1
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  _buttonDodge: {fileID: 1821113260}
   dodgeCurve:
     serializedVersion: 2
     m_Curve:
@@ -4703,7 +4704,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966125801}
-  m_LocalRotation: {x: 0.124006234, y: 0.80223787, z: -0.17896196, w: 0.5558862}
+  m_LocalRotation: {x: 0.12400624, y: 0.80223787, z: -0.17896195, w: 0.5558862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
