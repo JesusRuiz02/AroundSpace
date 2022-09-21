@@ -12,12 +12,13 @@ public class PlayerController : MonoBehaviour
     
     [Header("Players Stats")]
     [SerializeField] private bool groundedPlayer;
-    [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float jumpHeight = 1.0f;
-    [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private int gravity = 25;
     [SerializeField] private float movespeed = 4;
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private Transform _groundCheckPostition;
+    [SerializeField] private float _radiusdetection = 0.1f;
+    [SerializeField] private LayerMask _whatIsGround;
 
     private float velocityY = default;
     
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         RecordControls();
+        GroundCheck();
         if (!isDodging)
         {
             PlayerMovement();
@@ -106,7 +108,18 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerMovement()
     {
-        velocityY -= Time.deltaTime * gravity;
+        if (groundedPlayer)
+        {
+            velocityY = -gravity * Time.deltaTime;
+            if (_playerInput.PlayerMain.Jump.triggered)
+            {
+                velocityY = jumpForce;
+            }
+        }
+        else
+        {
+            velocityY -= gravity * Time.deltaTime;
+        }
         velocityY = Mathf.Clamp(velocityY, -10, 10);
         Vector3 fallVelocity = Vector3.up * velocityY;
         Vector3 velocity = (direction * movespeed) + fallVelocity;
@@ -119,5 +132,15 @@ public class PlayerController : MonoBehaviour
         float rs = rotationSpeed;
         if (isDodging) rs = 3;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction),rs * Time.deltaTime);
+    }
+
+    private void GroundCheck()
+    {
+        groundedPlayer = false;
+        Collider[] collidersGround = Physics.OverlapSphere(_groundCheckPostition.position, _radiusdetection, _whatIsGround);
+        if (collidersGround.Length > 0)
+        {
+            groundedPlayer = true;
+        }
     }
 }
