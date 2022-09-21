@@ -53,6 +53,15 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""10035425-c095-475c-94bc-719269ef4ba2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,28 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""177256a1-ae12-4549-b0df-36f93a696a81"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d290477-c7d6-4c3e-bc95-77dbecf487a7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -165,6 +196,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         m_PlayerMain_Move = m_PlayerMain.FindAction("Move", throwIfNotFound: true);
         m_PlayerMain_Jump = m_PlayerMain.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMain_Look = m_PlayerMain.FindAction("Look", throwIfNotFound: true);
+        m_PlayerMain_Dodge = m_PlayerMain.FindAction("Dodge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +259,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMain_Move;
     private readonly InputAction m_PlayerMain_Jump;
     private readonly InputAction m_PlayerMain_Look;
+    private readonly InputAction m_PlayerMain_Dodge;
     public struct PlayerMainActions
     {
         private @PlayerTouchMovement m_Wrapper;
@@ -234,6 +267,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerMain_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerMain_Jump;
         public InputAction @Look => m_Wrapper.m_PlayerMain_Look;
+        public InputAction @Dodge => m_Wrapper.m_PlayerMain_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -252,6 +286,9 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnLook;
+                @Dodge.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDodge;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -265,6 +302,9 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
             }
         }
     }
@@ -274,5 +314,6 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
 }
