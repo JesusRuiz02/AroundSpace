@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private Transform _child = default;
     private bool isDodging = false;
     private float dodgeTimer = default;
+    private ButtonTransparency _buttonTransparency;
 
     private Vector2 MovementInput;
     private Vector3 direction;
@@ -64,8 +63,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         dodgeTimer = 1;
         Debug.Log(dodgeTimer);
-        _buttonDodge.GetComponent<MeshRenderer>();
-       _onScreenButton = _buttonDodge.GetComponent<OnScreenButton>();
+        _onScreenButton = _buttonDodge.GetComponent<OnScreenButton>();
+        _buttonTransparency = _buttonDodge.GetComponent<ButtonTransparency>();
     }
 
     void Update()
@@ -86,20 +85,14 @@ public class PlayerController : MonoBehaviour
         }
         bool activeState = _groundedPlayer;
         StateDodgeButton(activeState);
-     /*   if (_groundedPlayer)
-        {
-            TransparentImage(0.5f);
-        }
-        else
-        {
-            TransparentImage(1f);
-        }
-       */
     }
 
     void StateDodgeButton(bool activateState)
     {
         _onScreenButton.enabled = activateState;
+        var transparentValue = _groundedPlayer ? 255  : 127; //Define the transparency of the button
+        var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
+        _buttonTransparency.Transparentbutton(byteNumber);
     }
     
     private IEnumerator Dodge()
@@ -166,11 +159,4 @@ public class PlayerController : MonoBehaviour
             _groundedPlayer = true;
         }
     }
-
-   /* void TransparentImage(float transparetValue)
-    { Image imageButton = _buttonDodge.gameObject.GetComponent<Image>();
-     var tempColor = imageButton.tintColor;
-     tempColor.a = transparetValue;
-     imageButton.tintColor = tempColor;
-    }*/
 }

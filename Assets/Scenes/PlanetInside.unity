@@ -4391,6 +4391,7 @@ GameObject:
   - component: {fileID: 1821113264}
   - component: {fileID: 1821113263}
   - component: {fileID: 1821113262}
+  - component: {fileID: 1821113265}
   m_Layer: 5
   m_Name: DodgeButton
   m_TagString: Untagged
@@ -4469,6 +4470,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821113260}
   m_CullTransparentMesh: 1
+--- !u!114 &1821113265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821113260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef776b0287d378b48801221c3c2666b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &1862102231
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4704,7 +4717,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966125801}
-  m_LocalRotation: {x: 0.12400624, y: 0.80223787, z: -0.17896195, w: 0.5558862}
+  m_LocalRotation: {x: 0.124006234, y: 0.80223787, z: -0.17896196, w: 0.5558862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
