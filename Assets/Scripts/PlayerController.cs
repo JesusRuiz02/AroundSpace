@@ -8,15 +8,14 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     private PlayerTouchMovement _playerInput;
     private CharacterController controller;
-    private Rigidbody _rigidbody = default;
     private Animator _animator = default;
     
     [Header("Players Stats")]
-    [SerializeField] private bool _groundedPlayer;
-    [SerializeField] private float _rotationSpeed = 15f;
-    [SerializeField] private int _gravity = 25;
-    [SerializeField] private float _movespeed = 4;
-    [SerializeField] private float _jumpForce = 10f;
+    [SerializeField] private bool _groundedPlayer; 
+    private float _rotationSpeed = 15f; 
+    private int _gravity = 25; 
+    private float _movespeed = 4; 
+    private float _jumpForce = 10f;
     [SerializeField] private Transform _groundCheckPostition;
     [SerializeField] private float _radiusdetection = 0.1f;
     [SerializeField] private LayerMask _whatIsGround;
@@ -27,14 +26,16 @@ public class PlayerController : MonoBehaviour
     [Header("Other")]
     private Vector3 playerVelocity;
     private Transform _cameraMain = default;
-    private Transform _child = default;
     private bool isDodging = false;
     private float dodgeTimer = default;
     private ButtonTransparency _buttonTransparency;
+   [SerializeField] private bool _uCanDodge = true;
+
+    private PlayerStats _playerStats;
 
     private Vector2 MovementInput;
     private Vector3 direction;
-
+    private float _dodgeTime = default;
     [Header("AnimationStuff")]
     [SerializeField] AnimationCurve dodgeCurve;
 
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerInput = new PlayerTouchMovement();
         controller = GetComponent<CharacterController>();
+        _playerStats = GetComponent<PlayerStats>();
     }
 
     private void OnEnable()
@@ -59,12 +61,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _cameraMain = Camera.main.transform;
-        _child = transform.GetChild(0).transform;
         _animator = GetComponent<Animator>();
         dodgeTimer = 1;
-        Debug.Log(dodgeTimer);
         _onScreenButton = _buttonDodge.GetComponent<OnScreenButton>();
         _buttonTransparency = _buttonDodge.GetComponent<ButtonTransparency>();
+        _movespeed = _playerStats.PlayerSpeed;
+        _jumpForce = _playerStats.JumpForce;
+        _dodgeTime = _playerStats.DodgeTimer;
+        _rotationSpeed = _playerStats.RotateSpeed;
     }
 
     void Update()
@@ -78,19 +82,23 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
         if (_playerInput.PlayerMain.Dodge.triggered)
         {
-            if (direction.magnitude != 0)
+            if (_uCanDodge)
             {
-                StartCoroutine(Dodge()); //Only if the character is moving can dodge
+                if (direction.magnitude != 0) //Only if the character is moving can dodge
+                {
+                    StartCoroutine(Dodge()); 
+                    StartCoroutine(ResetTimeDodge());
+                }
             }
         }
         bool activeState = _groundedPlayer;
-        StateDodgeButton(activeState);
+        StateButton(activeState);
     }
 
-    void StateDodgeButton(bool activateState)
+    void StateButton(bool activateState)
     {
         _onScreenButton.enabled = activateState;
-        var transparentValue = _groundedPlayer ? 255  : 127; //Define the transparency of the button
+        var transparentValue = _groundedPlayer ? 255 : 127; //Define the transparency of the button
         var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
         _buttonTransparency.Transparentbutton(byteNumber);
     }
@@ -158,5 +166,12 @@ public class PlayerController : MonoBehaviour
         {
             _groundedPlayer = true;
         }
+    }
+
+    private IEnumerator ResetTimeDodge()
+    {
+        _uCanDodge = false;
+        yield return new WaitForSeconds(_dodgeTime);
+        _uCanDodge = true;
     }
 }
