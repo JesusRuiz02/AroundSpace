@@ -1,38 +1,42 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     private PlayerTouchMovement _playerInput;
     private CharacterController controller;
-    private Rigidbody _rigidbody = default;
     private Animator _animator = default;
     
     [Header("Players Stats")]
-    [SerializeField] private bool groundedPlayer;
-    [SerializeField] private float rotationSpeed = 15f;
-    [SerializeField] private int gravity = 25;
-    [SerializeField] private float movespeed = 4;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private bool _groundedPlayer; 
+    private float _rotationSpeed = 15f; 
+    private int _gravity = 25; 
+    private float _movespeed = 4; 
+    private float _jumpForce = 10f;
     [SerializeField] private Transform _groundCheckPostition;
     [SerializeField] private float _radiusdetection = 0.1f;
     [SerializeField] private LayerMask _whatIsGround;
-
-    private float velocityY = default;
+    [SerializeField] private GameObject _buttonDodge = default;
+    [Header("Scripts")] 
+    private PlayerHealth _playerHealth;
+    private ButtonTransparency _buttonTransparency;
+    private PlayerStats _playerStats;
+    private OnScreenButton _onScreenButton;
     
     [Header("Other")]
     private Vector3 playerVelocity;
-    private readonly float Velocidad = Animator.StringToHash("VelocidadHor");
     private Transform _cameraMain = default;
-    private Transform _child = default;
     private bool isDodging = false;
     private float dodgeTimer = default;
-
+    private bool _uCanDodge = true;
+    private float velocityY = default;
+    
     private Vector2 MovementInput;
     private Vector3 direction;
-
+    private float _dodgeTime = default;
     [Header("AnimationStuff")]
     [SerializeField] AnimationCurve dodgeCurve;
 
@@ -40,6 +44,8 @@ public class PlayerController : MonoBehaviour
     {
         _playerInput = new PlayerTouchMovement();
         controller = GetComponent<CharacterController>();
+        _playerStats = GetComponent<PlayerStats>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void OnEnable()
@@ -55,10 +61,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _cameraMain = Camera.main.transform;
-        _child = transform.GetChild(0).transform;
         _animator = GetComponent<Animator>();
         dodgeTimer = 1;
-        Debug.Log(dodgeTimer);
+        _onScreenButton = _buttonDodge.GetComponent<OnScreenButton>();
+        _buttonTransparency = _buttonDodge.GetComponent<ButtonTransparency>();
+        _movespeed = _playerStats.PlayerSpeed;
+        _jumpForce = _playerStats.JumpForce;
+        _dodgeTime = _playerStats.DodgeTimer;
+        _rotationSpeed = _playerStats.RotateSpeed;
     }
 
     void Update()
@@ -72,11 +82,26 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
         if (_playerInput.PlayerMain.Dodge.triggered)
         {
-            if (direction.magnitude != 0)
+            if (_uCanDodge)
             {
-                StartCoroutine(Dodge()); //Only if the character is moving can dodge
+                if (direction.magnitude != 0) //Only if the character is moving can dodge
+                {
+                    StartCoroutine(Dodge()); 
+                    StartCoroutine(ResetTimeDodge());
+                    StartCoroutine(_playerHealth.InmunityTime(dodgeTimer));
+                }
             }
         }
+        bool activeState = _groundedPlayer;
+        StateButton(activeState);
+    }
+
+    void StateButton(bool activateState)
+    {
+        _onScreenButton.enabled = activateState;
+        var transparentValue = _groundedPlayer ? 255 : 127; //Define the transparency of the button
+        var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
+        _buttonTransparency.Transparentbutton(byteNumber);
     }
     
     private IEnumerator Dodge()
@@ -108,39 +133,46 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerMovement()
     {
-        if (groundedPlayer)
+        if (_groundedPlayer)
         {
-            velocityY = -gravity * Time.deltaTime;
+            velocityY = -_gravity * Time.deltaTime;
             if (_playerInput.PlayerMain.Jump.triggered)
             {
-                velocityY = jumpForce;
+                velocityY = _jumpForce;
             }
         }
         else
         {
-            velocityY -= gravity * Time.deltaTime;
+            velocityY -= _gravity * Time.deltaTime;
         }
         velocityY = Mathf.Clamp(velocityY, -10, 10);
         Vector3 fallVelocity = Vector3.up * velocityY;
-        Vector3 velocity = (direction * movespeed) + fallVelocity;
+        Vector3 velocity = (direction * _movespeed) + fallVelocity;
         
         controller.Move(velocity * Time.deltaTime);
     }
     void PlayerRotation()
     {
         if (direction.magnitude == 0) return;
-        float rs = rotationSpeed;
+        float rs = _rotationSpeed;
         if (isDodging) rs = 3;
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction),rs * Time.deltaTime);
     }
 
     private void GroundCheck()
     {
-        groundedPlayer = false;
+        _groundedPlayer = false;
         Collider[] collidersGround = Physics.OverlapSphere(_groundCheckPostition.position, _radiusdetection, _whatIsGround);
         if (collidersGround.Length > 0)
         {
-            groundedPlayer = true;
+            _groundedPlayer = true;
         }
+    }
+
+    private IEnumerator ResetTimeDodge()
+    {
+        _uCanDodge = false;
+        yield return new WaitForSeconds(_dodgeTime);
+        _uCanDodge = true;
     }
 }

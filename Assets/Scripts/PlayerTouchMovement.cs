@@ -62,6 +62,15 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""229050a8-6c18-482d-90fc-668cea0b1cca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,6 +194,28 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                     ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a9bf6a4-ffff-4275-9956-2c3848e3efd7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4b6a64d-eabd-4826-bb78-55bf7f8b17a2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -197,6 +228,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         m_PlayerMain_Jump = m_PlayerMain.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMain_Look = m_PlayerMain.FindAction("Look", throwIfNotFound: true);
         m_PlayerMain_Dodge = m_PlayerMain.FindAction("Dodge", throwIfNotFound: true);
+        m_PlayerMain_Attack = m_PlayerMain.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +292,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMain_Jump;
     private readonly InputAction m_PlayerMain_Look;
     private readonly InputAction m_PlayerMain_Dodge;
+    private readonly InputAction m_PlayerMain_Attack;
     public struct PlayerMainActions
     {
         private @PlayerTouchMovement m_Wrapper;
@@ -268,6 +301,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMain_Jump;
         public InputAction @Look => m_Wrapper.m_PlayerMain_Look;
         public InputAction @Dodge => m_Wrapper.m_PlayerMain_Dodge;
+        public InputAction @Attack => m_Wrapper.m_PlayerMain_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,6 +323,9 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                 @Dodge.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDodge;
+                @Attack.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +342,9 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -315,5 +355,6 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

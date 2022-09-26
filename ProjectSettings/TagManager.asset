@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpaceShip
   - Planet
+  - Enemy
   layers:
   - Default
   - TransparentFX
