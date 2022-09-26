@@ -20,32 +20,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _radiusdetection = 0.1f;
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private GameObject _buttonDodge = default;
-
-    private float velocityY = default;
+    [Header("Scripts")] 
+    private PlayerHealth _playerHealth;
+    private ButtonTransparency _buttonTransparency;
+    private PlayerStats _playerStats;
+    private OnScreenButton _onScreenButton;
     
     [Header("Other")]
     private Vector3 playerVelocity;
     private Transform _cameraMain = default;
     private bool isDodging = false;
     private float dodgeTimer = default;
-    private ButtonTransparency _buttonTransparency;
-   [SerializeField] private bool _uCanDodge = true;
-
-    private PlayerStats _playerStats;
-
+    private bool _uCanDodge = true;
+    private float velocityY = default;
+    
     private Vector2 MovementInput;
     private Vector3 direction;
     private float _dodgeTime = default;
     [Header("AnimationStuff")]
     [SerializeField] AnimationCurve dodgeCurve;
 
-    private OnScreenButton _onScreenButton;
-
     private void Awake()
     {
         _playerInput = new PlayerTouchMovement();
         controller = GetComponent<CharacterController>();
         _playerStats = GetComponent<PlayerStats>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void OnEnable()
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
                 {
                     StartCoroutine(Dodge()); 
                     StartCoroutine(ResetTimeDodge());
+                    StartCoroutine(_playerHealth.InmunityTime(dodgeTimer));
                 }
             }
         }

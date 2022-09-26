@@ -3692,10 +3692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundedPlayer: 0
-  _rotationSpeed: 15
-  _gravity: 25
-  _movespeed: 4
-  _jumpForce: 10
   _groundCheckPostition: {fileID: 1312480498}
   _radiusdetection: 0.1
   _whatIsGround:
@@ -3750,6 +3746,22 @@ MonoBehaviour:
   _health: 100
   _playerspeed: 4
   _jumpForce: 10
+  _dodgeTimer: 3
+  _rotateSpeed: 15
+--- !u!114 &1461940741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461940726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321999134cbeb3f439c26a28f7b38af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _currentHealth: 0
 --- !u!1 &1480017527
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,7 +4848,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966125801}
-  m_LocalRotation: {x: 0.12400624, y: 0.80223787, z: -0.17896195, w: 0.5558862}
+  m_LocalRotation: {x: 0.12400624, y: 0.80223787, z: -0.17896196, w: 0.5558862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
