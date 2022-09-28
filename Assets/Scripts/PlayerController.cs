@@ -94,6 +94,10 @@ public class PlayerController : MonoBehaviour
         }
         bool activeState = _groundedPlayer;
         StateButton(activeState);
+        if (_playerInput.PlayerMain.Damage.triggered)
+        {
+            _playerHealth.TakeDamage(34);
+        }
     }
 
     void StateButton(bool activateState)

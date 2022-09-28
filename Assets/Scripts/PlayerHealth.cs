@@ -7,15 +7,18 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float _maxHealth = default;
     [SerializeField] private float _currentHealth = default; 
     private bool isInmune = false;
+    [SerializeField] private GameObject SceneManager = default;
+    private ChangeScene _changeScene;
     private PlayerStats _playerStats;
     void Start()
     {
+        _changeScene = SceneManager.GetComponent<ChangeScene>();
         _playerStats = GetComponent<PlayerStats>();
         _maxHealth = _playerStats.Health;
         _currentHealth = _maxHealth;
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
     }
@@ -33,5 +36,14 @@ public class PlayerHealth : MonoBehaviour
         isInmune = true;
         yield return new WaitForSeconds(duration);
         isInmune = false;
+    }
+
+    private void Update()
+    {
+        if  (_currentHealth <= 0)
+        {
+            _changeScene.ActivateGameOver();
+        }
+
     }
 }
