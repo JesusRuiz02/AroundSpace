@@ -14963,7 +14963,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966125801}
-  m_LocalRotation: {x: 0.124006234, y: 0.80223787, z: -0.17896196, w: 0.5558862}
+  m_LocalRotation: {x: 0.12400624, y: 0.80223787, z: -0.17896195, w: 0.5558862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15963,7 +15963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147c566cda086894c8206928a751fa91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceWalkDistance: 2.5
+  ForceWalkDistance: 1.1
   LockTurning: 0
   MovementTurningSensitivity: 2
   NotifiedOfNewVersion: 1
@@ -16405,7 +16405,7 @@ MonoBehaviour:
   CurrentDamageAmount: 5
   DamageAmountRun: 5
   WanderRadius: 25
-  TabNumber: 2
+  TabNumber: 6
   TemperamentTabNumber: 2
   DetectionTagsTabNumber: 1
   AnimationTabNumber: 3
@@ -16417,7 +16417,7 @@ MonoBehaviour:
   AttackAnimationNumber: 1
   RunAttackAnimationNumber: 1
   IdleAnimationNumber: 1
-  CombatTabNumber: 0
+  CombatTabNumber: 1
   FactionsAndTagTabNumber: 1
   EventTabNumber: 0
   MinimumWaitTime: 3
@@ -16446,7 +16446,7 @@ MonoBehaviour:
   MeleeTooCloseDistance: 1
   RangedTooCloseDistance: 5
   AttackDistance: 2.5
-  MeleeAttackDistance: 2.5
+  MeleeAttackDistance: 1.1
   RangedAttackDistance: 25
   RunAttackDistance: 3
   CautiousSeconds: 8
@@ -16651,7 +16651,7 @@ MonoBehaviour:
   BehaviorFoldout: 1
   ConfidenceFoldout: 1
   WanderFoldout: 0
-  CombatStyleFoldout: 1
+  CombatStyleFoldout: 0
   CurrentlyPlayingActionAnimation: 0
   DamageSoundInhibitor: 0
   DamageEffectInhibitor: 0
