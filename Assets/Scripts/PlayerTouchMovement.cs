@@ -71,6 +71,15 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Damage"",
+                    ""type"": ""Button"",
+                    ""id"": ""d197cd38-1f45-4545-b32b-45bfd627e429"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd6aa15f-348b-4afb-9da7-2a7dc4a349d2"",
+                    ""path"": ""<Keyboard>/numpad9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Damage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         m_PlayerMain_Look = m_PlayerMain.FindAction("Look", throwIfNotFound: true);
         m_PlayerMain_Dodge = m_PlayerMain.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerMain_Attack = m_PlayerMain.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerMain_Damage = m_PlayerMain.FindAction("Damage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMain_Look;
     private readonly InputAction m_PlayerMain_Dodge;
     private readonly InputAction m_PlayerMain_Attack;
+    private readonly InputAction m_PlayerMain_Damage;
     public struct PlayerMainActions
     {
         private @PlayerTouchMovement m_Wrapper;
@@ -302,6 +324,7 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_PlayerMain_Look;
         public InputAction @Dodge => m_Wrapper.m_PlayerMain_Dodge;
         public InputAction @Attack => m_Wrapper.m_PlayerMain_Attack;
+        public InputAction @Damage => m_Wrapper.m_PlayerMain_Damage;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,6 +349,9 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnAttack;
+                @Damage.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDamage;
+                @Damage.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDamage;
+                @Damage.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnDamage;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -345,6 +371,9 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Damage.started += instance.OnDamage;
+                @Damage.performed += instance.OnDamage;
+                @Damage.canceled += instance.OnDamage;
             }
         }
     }
@@ -356,5 +385,6 @@ public partial class @PlayerTouchMovement : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnDamage(InputAction.CallbackContext context);
     }
 }
