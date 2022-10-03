@@ -199,7 +199,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b136fe29e774b0744aa7c82e63e3c51a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1782,7 +1782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 871, y: 408}
+  m_AnchoredPosition: {x: 871, y: 465.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &587133317
@@ -2405,7 +2405,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 575aff0bad4d13b469499dc11aa002cf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.61
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4842,6 +4842,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1a08ca90ef8230b45be67ff86cbc6d2a, type: 3}
   m_PrefabInstance: {fileID: 1461940725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1461940727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1617399745748130172, guid: 1a08ca90ef8230b45be67ff86cbc6d2a, type: 3}
+  m_PrefabInstance: {fileID: 1461940725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1461940728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461940727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.22119896, z: 0.13899013}
+  m_Center: {x: -0.0000000035117096, y: 0.045106474, z: 0.044494487}
 --- !u!143 &1461940729
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4860,11 +4878,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.55, z: 0}
+--- !u!1 &1461940730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4108234674411243596, guid: 1a08ca90ef8230b45be67ff86cbc6d2a, type: 3}
+  m_PrefabInstance: {fileID: 1461940725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1461940731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1a08ca90ef8230b45be67ff86cbc6d2a, type: 3}
   m_PrefabInstance: {fileID: 1461940725}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1461940732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461940730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.22119896, z: 0.13899013}
+  m_Center: {x: -0.0000000035117096, y: 0.045106474, z: 0.044494487}
 --- !u!136 &1461940734
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5951,7 +5987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Gamepad>/leftTrigger
+  m_ControlPath: <Gamepad>/rightTrigger
 --- !u!114 &1808716154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6462,7 +6498,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966125801}
-  m_LocalRotation: {x: 0.12400624, y: 0.80223787, z: -0.17896195, w: 0.5558862}
+  m_LocalRotation: {x: 0.124006234, y: 0.80223787, z: -0.17896196, w: 0.5558862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

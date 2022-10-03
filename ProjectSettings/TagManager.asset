@@ -8,6 +8,7 @@ TagManager:
   - Planet
   - Enemy
   - GameOver
+  - Melee
   layers:
   - Default
   - TransparentFX
