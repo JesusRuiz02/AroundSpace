@@ -10,6 +10,7 @@ TagManager:
   - GameOver
   - Melee
   - AI
+  - Combat
   layers:
   - Default
   - TransparentFX

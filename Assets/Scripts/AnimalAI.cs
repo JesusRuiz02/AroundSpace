@@ -5,7 +5,7 @@ public class AnimalAI : MonoBehaviour
 {
     [SerializeField] private float movSpeed;
     [SerializeField] private float rotSpeed = 100f;
-    private Animator _animator;
+ //   private Animator _animator;
 
     private bool _isWandering = false;
     private bool _isRotL = false;
@@ -18,7 +18,7 @@ public class AnimalAI : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
+      //  _animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -34,7 +34,7 @@ public class AnimalAI : MonoBehaviour
         {
             transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
         }
-        _animator.SetBool("IsRunning", _isWalking);
+      //  _animator.SetBool("IsRunning", _isWalking);
         if (_isWalking)
         {
             rb.transform.position += transform.forward * movSpeed;
