@@ -8,6 +8,9 @@ TagManager:
   - Planet
   - Enemy
   - GameOver
+  - Melee
+  - AI
+  - Combat
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - AI
   - 
   - 
   - 

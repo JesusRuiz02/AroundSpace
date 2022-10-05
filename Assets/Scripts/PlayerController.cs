@@ -98,6 +98,17 @@ public class PlayerController : MonoBehaviour
         {
             _playerHealth.TakeDamage(34);
         }
+
+        if (_playerInput.PlayerMain.Attack.triggered)
+        {
+            PlayerAttack();
+        }
+    }
+
+    void PlayerAttack()
+    {
+       // _animator.SetInteger("AttackSystem",1);
+       _animator.SetTrigger("Attack");
     }
 
     void StateButton(bool activateState)
