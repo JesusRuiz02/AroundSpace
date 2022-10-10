@@ -7,7 +7,6 @@ public class NpcHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Colisiono");
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Conecto con el jugador");
