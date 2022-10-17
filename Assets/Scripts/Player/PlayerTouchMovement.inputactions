@@ -51,9 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Damage",
+                    "name": "Invisble",
                     "type": "Button",
-                    "id": "d197cd38-1f45-4545-b32b-45bfd627e429",
+                    "id": "f6d4c160-34f6-4c1e-a2a9-9e48aafe6f57",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -206,12 +206,23 @@
                 },
                 {
                     "name": "",
-                    "id": "fd6aa15f-348b-4afb-9da7-2a7dc4a349d2",
-                    "path": "<Keyboard>/numpad9",
+                    "id": "b011187b-9034-4053-a423-b1ed465e2377",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Damage",
+                    "action": "Invisble",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "298d01fb-dc7e-47f3-8676-cc1510c703cd",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Invisble",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

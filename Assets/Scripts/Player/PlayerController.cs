@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _radiusdetection = 0.1f;
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private GameObject _buttonDodge = default;
+    
     [Header("Scripts")] 
     private PlayerHealth _playerHealth;
     private ButtonTransparency _buttonTransparency;
     private PlayerStats _playerStats;
     private OnScreenButton _onScreenButton;
+    private InvisiblePlayer _invisiblePlayer;
     
     [Header("Other")]
     private Vector3 playerVelocity;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private float dodgeTimer = default;
     private bool _uCanDodge = true;
     private float velocityY = default;
+    private float _invisibleCounter = default;
 
     private int _actionAttaackStateAnimation = 0;
     private Vector2 MovementInput;
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         _playerStats = GetComponent<PlayerStats>();
         _playerHealth = GetComponent<PlayerHealth>();
+        _invisiblePlayer = GetComponent<InvisiblePlayer>();
     }
 
     private void OnEnable()
@@ -96,11 +100,10 @@ public class PlayerController : MonoBehaviour
         }
         bool activeState = _groundedPlayer;
         StateButton(activeState);
-        if (_playerInput.PlayerMain.Damage.triggered)
+        if (_playerInput.PlayerMain.Invisble.triggered)
         {
-            _playerHealth.TakeDamage(34);
+            BecomeInvisible();
         }
-
         if (_playerInput.PlayerMain.Attack.triggered)
         {
             PlayerAttack();
@@ -186,11 +189,24 @@ public class PlayerController : MonoBehaviour
             _groundedPlayer = true;
         }
     }
-
     private IEnumerator ResetTimeDodge()
     {
         _uCanDodge = false;
         yield return new WaitForSeconds(_dodgeTime);
         _uCanDodge = true;
+    }
+
+    private void BecomeInvisible()
+    {
+        if (_invisibleCounter > 0)
+        {
+            StartCoroutine(_invisiblePlayer.Invisible());
+            _invisibleCounter--;
+        }
+    }
+
+    public void AddInvisibleCounter()
+    {
+        _invisibleCounter++;
     }
 }

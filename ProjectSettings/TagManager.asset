@@ -11,6 +11,7 @@ TagManager:
   - Melee
   - AI
   - Combat
+  - Fruit
   layers:
   - Default
   - TransparentFX
