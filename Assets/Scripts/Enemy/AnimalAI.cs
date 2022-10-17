@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AnimalAI : MonoBehaviour
 {
     [SerializeField] private float movSpeed;
     [SerializeField] private float rotSpeed = 100f;
- //   private Animator _animator;
+      private Animator _animator;
 
     private bool _isWandering = false;
     private bool _isRotL = false;
@@ -18,8 +20,15 @@ public class AnimalAI : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-      //  _animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
+
+    private void OnDisable()
+    {
+        _isWalking = false;
+        _animator.SetBool("Walk Forward", _isWalking);
+    }
+
     private void Update()
     {
         if (!_isWandering)
@@ -34,12 +43,11 @@ public class AnimalAI : MonoBehaviour
         {
             transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
         }
-      //  _animator.SetBool("IsRunning", _isWalking);
+        _animator.SetBool("Walk Forward", _isWalking);
         if (_isWalking)
         {
             rb.transform.position += transform.forward * movSpeed;
         }
-      
     }
     IEnumerator Wander()
     {
@@ -57,21 +65,25 @@ public class AnimalAI : MonoBehaviour
         switch (rotatelorR)
         {
             case 1:
+                _animator.SetTrigger("Turn Right");
                 _isRotR = true;
                 yield return new WaitForSeconds(rotTime);
                 _isRotR = false;
                 break;
             case 2:
+                _animator.SetTrigger("Turn Left");
                 _isRotL = true;
                 yield return new WaitForSeconds(rotTime);
                 _isRotL = false;
                 break;
             case 3 :
+                _animator.SetTrigger("Turn Right");
                 _isRotR = true;
                 yield return new WaitForSeconds(rotTime);
                 _isRotR = false;
                 break;
             case 4:
+                _animator.SetTrigger("Turn Left");
                 _isRotL = true;
                 yield return new WaitForSeconds(rotTime);
                 _isRotL = false;
