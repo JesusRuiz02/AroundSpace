@@ -668,6 +668,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8063280321061129005, guid: cbf202c31bc43ec45a34215f71e5599d, type: 3}
+--- !u!137 &239234503 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 47989808120068565, guid: 1a08ca90ef8230b45be67ff86cbc6d2a, type: 3}
+  m_PrefabInstance: {fileID: 1461940725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &241763335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,6 +2099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d230cc5800ae888499816d382fa51b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 1461940739}
 --- !u!64 &811818102
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15092,12 +15098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6546fda20a5886044a6cc161f275424d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ignore:
-    serializedVersion: 2
-    m_Bits: 0
-  _objective:
-    serializedVersion: 2
-    m_Bits: 0
+  transparency: 0.1
+  _renderer: {fileID: 239234503}
 --- !u!1 &1480017527
 GameObject:
   m_ObjectHideFlags: 0
