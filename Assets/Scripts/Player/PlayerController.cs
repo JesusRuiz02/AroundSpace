@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
 
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour
     private float _dodgeTime = default;
     [Header("AnimationStuff")]
     [SerializeField] AnimationCurve dodgeCurve;
+
+    [SerializeField]
+    private TextMeshProUGUI _invisibleText;
 
     private void Awake()
     {
@@ -202,11 +206,13 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(_invisiblePlayer.Invisible());
             _invisibleCounter--;
+            _invisibleText.text = _invisibleCounter.ToString("0");
         }
     }
 
     public void AddInvisibleCounter()
     {
         _invisibleCounter++;
+        _invisibleText.text = _invisibleCounter.ToString("0");
     }
 }
