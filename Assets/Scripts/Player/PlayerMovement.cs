@@ -5,7 +5,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Components")]
     private PlayerTouchMovement _playerInput;
     private CharacterController controller;
-    private Rigidbody _rigidbody = default;
     private Animator _animator = default;
 
     [Header("Players Stats")] 
