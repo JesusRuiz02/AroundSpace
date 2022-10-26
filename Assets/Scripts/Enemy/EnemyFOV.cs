@@ -21,15 +21,19 @@ public class EnemyFOV : MonoBehaviour
     private EnemyNavMesh _enemyNavMesh;
     private AnimalAI _animalAI = default;
     private NavMeshAgent _navMeshAgent;
+    private Animator _animator;
+
+    private const string RangeAttack = "Cast Spell";
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _targetRef = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine(FOVRountine());
+        StartCoroutine(FOVRoutine());
         _enemyNavMesh = GetComponent<EnemyNavMesh>();
         _animalAI = GetComponent<AnimalAI>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
-    private IEnumerator FOVRountine()
+    private IEnumerator FOVRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
         while (true)
@@ -38,8 +42,10 @@ public class EnemyFOV : MonoBehaviour
             FieldOfViewCheck();
         }
     }
-    private void Shoot()
+    private IEnumerator Shoot()
     {
+        _animator.SetTrigger(RangeAttack);
+        yield return new WaitForSeconds(0.25f);
         GameObject bullet = Instantiate(projectile, _firePosition.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1000, ForceMode.Acceleration);
         Destroy(bullet, 10f);
@@ -52,7 +58,7 @@ public class EnemyFOV : MonoBehaviour
             if (Time.time >= _nextFire)
             {
                 _nextFire = Time.time + 1f / _fireRate;
-                Shoot();
+                StartCoroutine(Shoot());
             }
         }
     }

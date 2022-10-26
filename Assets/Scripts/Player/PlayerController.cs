@@ -38,11 +38,17 @@ public class PlayerController : MonoBehaviour
     private bool _uCanDodge = true;
     private float velocityY = default;
     private float _invisibleCounter = default;
-
-    private int _actionAttaackStateAnimation = 0;
     private Vector2 MovementInput;
     private Vector3 direction;
     private float _dodgeTime = default;
+    
+
+    [Header("SystemAttack")] 
+    [SerializeField] private float _noAttack;
+    private float _attackSpeed = 4;
+    private bool _canAttack = true;
+  
+    
     [Header("AnimationStuff")]
     [SerializeField] AnimationCurve dodgeCurve;
 
@@ -108,42 +114,14 @@ public class PlayerController : MonoBehaviour
         {
             BecomeInvisible();
         }
+
         if (_playerInput.PlayerMain.Attack.triggered)
         {
-            PlayerAttack();
+            SystemCombo();
         }
-    } 
-
-    void PlayerAttack()
-    {
-        _actionAttaackStateAnimation++;
-        _animator.SetInteger("AttackSystem",_actionAttaackStateAnimation);
-       _animator.SetTrigger("Attack");
     }
 
-    void StateButton(bool activateState)
-    {
-        _onScreenButton.enabled = activateState;
-        var transparentValue = _groundedPlayer ? 255 : 127; //Define the transparency of the button
-        var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
-        _buttonTransparency.Transparentbutton(byteNumber);
-    }
-    
-    private IEnumerator Dodge()
-    {
-        _animator.SetTrigger("Dodge");
-        isDodging = true;
-        float timer = 0;
-        while (timer < dodgeTimer)
-        {
-            float speed = dodgeCurve.Evaluate(timer);
-            Vector3 dir = (transform.forward * speed) + (Vector3.up * velocityY);
-            controller.Move(dir * Time.deltaTime);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        isDodging = false;
-    }
+    #region Principal Movement
     private void RecordControls()
     {
         MovementInput = _playerInput.PlayerMain.Move.ReadValue<Vector2>();
@@ -193,13 +171,64 @@ public class PlayerController : MonoBehaviour
             _groundedPlayer = true;
         }
     }
+    
+
+    #endregion
+
+    #region Advanced Movement
+    private IEnumerator Dodge()
+    {
+        _animator.SetTrigger("Dodge");
+        isDodging = true;
+        float timer = 0;
+        while (timer < dodgeTimer)
+        {
+            float speed = dodgeCurve.Evaluate(timer);
+            Vector3 dir = (transform.forward * speed) + (Vector3.up * velocityY);
+            controller.Move(dir * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        isDodging = false;
+    }
+
+    private IEnumerator Dash()
+    {
+        isDodging = true;
+        float timer = 0;
+        while (timer < 0.5f)
+        {
+            Vector3 dir = (transform.forward * _attackSpeed) + (Vector3.up * velocityY);
+            controller.Move(dir * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        isDodging = false;
+    }
+
+    private void StopDash()
+    {
+        StopCoroutine(Dash());
+    }
+  
     private IEnumerator ResetTimeDodge()
     {
         _uCanDodge = false;
         yield return new WaitForSeconds(_dodgeTime);
         _uCanDodge = true;
     }
+    
 
+    #endregion
+    void StateButton(bool activateState)
+    {
+        _onScreenButton.enabled = activateState;
+        var transparentValue = _groundedPlayer ? 255 : 127; //Define the transparency of the button
+        var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
+        _buttonTransparency.Transparentbutton(byteNumber);
+    }
+
+    
     private void BecomeInvisible()
     {
         if (_invisibleCounter > 0)
@@ -215,4 +244,54 @@ public class PlayerController : MonoBehaviour
         _invisibleCounter++;
         _invisibleText.text = _invisibleCounter.ToString("0");
     }
+
+    #region Combo
+    private void SystemCombo()
+    {
+        if (_canAttack)
+        {
+            _noAttack++;
+        }
+
+        if (_noAttack == 1)
+        {
+            _animator.SetInteger("AttackSystem",1);
+        }
+    }
+
+    public void ComboCheck()
+    {
+        _canAttack = false;
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && _noAttack == 1)
+        {
+            _animator.SetInteger("AttackSystem",0);
+            _canAttack = true;
+            _noAttack = 0;
+        }
+        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && _noAttack >= 2)
+        {
+            _animator.SetInteger("AttackSystem",2);
+            _canAttack = true;
+        }
+        else if ( _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && _noAttack == 2)
+        {
+            _animator.SetInteger("AttackSystem",0);
+            _canAttack = true;
+            _noAttack = 0;
+        }
+        else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && _noAttack >= 3)
+        {
+            _animator.SetInteger("AttackSystem",3);
+        }
+        else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit3"))
+        {
+            _animator.SetInteger("AttackSystem",0);
+            _canAttack = true;
+            _noAttack = 0;
+        }
+    }
+    
+
+    #endregion
+    
 }
