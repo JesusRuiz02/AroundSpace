@@ -12,6 +12,7 @@ TagManager:
   - AI
   - Combat
   - Fruit
+  - Projectile
   layers:
   - Default
   - TransparentFX

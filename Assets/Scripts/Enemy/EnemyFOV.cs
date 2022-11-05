@@ -47,7 +47,7 @@ public class EnemyFOV : MonoBehaviour
         _animator.SetTrigger(RangeAttack);
         yield return new WaitForSeconds(0.25f);
         GameObject bullet = Instantiate(projectile, _firePosition.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1000, ForceMode.Acceleration);
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500, ForceMode.Acceleration);
         Destroy(bullet, 10f);
     }
 

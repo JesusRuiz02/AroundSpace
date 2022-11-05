@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
         _invisibleCounter++;
         _invisibleText.text = _invisibleCounter.ToString("0");
     }
-
+    
     #region Combo
     private void SystemCombo()
     {

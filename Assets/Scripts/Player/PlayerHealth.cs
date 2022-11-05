@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isInmune)
+        if (collision.gameObject.CompareTag("Projectile") && !isInmune)
         {
             TakeDamage(100);
         }

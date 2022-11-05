@@ -11,15 +11,11 @@ public class NpcHealth : MonoBehaviour
         {
             Debug.Log("Conecto con el jugador");
         }
-        if (collision.gameObject.CompareTag("Combat"))
-        {
-            _health -= 30;
-        }
     }
 
     public void LostHealth()
     {
-        _health -= 30;
+        _health -= 10;
         Debug.Log("Matalo");
     }
 }
