@@ -14,7 +14,8 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField] private LayerMask _obstructionMask = default;
     [SerializeField] private bool _canSeeTarget = default;
     [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform _firePosition; 
+    [SerializeField] private Transform _firePosition;
+    [SerializeField] private float _powerBullet = 250f;
     private float _nextFire = default;
     [SerializeField] private float _fireRate = 3f;
     private Vector3 _directionToTarget;
@@ -23,6 +24,7 @@ public class EnemyFOV : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
 
+   [SerializeField] private AudioClip _fireball;
     private const string RangeAttack = "Cast Spell";
     void Start()
     {
@@ -47,7 +49,12 @@ public class EnemyFOV : MonoBehaviour
         _animator.SetTrigger(RangeAttack);
         yield return new WaitForSeconds(0.25f);
         GameObject bullet = Instantiate(projectile, _firePosition.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500, ForceMode.Acceleration);
+        yield return new WaitForSeconds(0.25f);
+        AudioManager.instance.PlaySFX(_fireball);
+        if (bullet != null)
+        {
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * _powerBullet, ForceMode.Acceleration);
+        }
         Destroy(bullet, 10f);
     }
 

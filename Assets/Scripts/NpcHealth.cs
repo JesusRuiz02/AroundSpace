@@ -4,6 +4,15 @@ using UnityEngine;
 public class NpcHealth : MonoBehaviour
 {
     [SerializeField] private float _health = 100;
+    EnemyStats _enemyStats;
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        _enemyStats = GetComponent<EnemyStats>();
+        _health = _enemyStats.Health;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,7 +24,13 @@ public class NpcHealth : MonoBehaviour
 
     public void LostHealth()
     {
-        _health -= 10;
-        Debug.Log("Matalo");
+        _health -= 25;
+       if(_health <=0 )
+        {
+            _enemyStats.TurnOffScripts();
+            animator.SetTrigger("Die");
+            Destroy(gameObject, 2f);
+        }
     }
+    
 }

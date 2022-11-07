@@ -38,6 +38,7 @@ public class ChangeScene : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+      
     }
 
     public void ActivateGameOver()

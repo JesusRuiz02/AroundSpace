@@ -20,5 +20,20 @@ public class EnemyStats : MonoBehaviour
        public float Radius = 0.5f;
        public float Speed = 3f;
        public float StoppingDistance = 0.5f;
-       
+
+    AnimalAI _animalAI;
+    EnemyFOV _enemyFOV;
+
+    private void Awake()
+    {
+        _animalAI = GetComponent<AnimalAI>();
+        _enemyFOV = GetComponent<EnemyFOV>();
+    }
+
+    public void TurnOffScripts()
+    {
+        _animalAI.enabled = false;
+        _enemyFOV.enabled = false;
+    }
+
 }

@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 MovementInput;
     private Vector3 direction;
     private float _dodgeTime = default;
+    [SerializeField] private AudioClip _punchSFX;
+    [SerializeField] private AudioClip _backgroundMusic;
     
 
     [Header("SystemAttack")] 
@@ -85,13 +87,15 @@ public class PlayerController : MonoBehaviour
         _jumpForce = _playerStats.JumpForce;
         _dodgeTime = _playerStats.DodgeTimer;
         _rotationSpeed = _playerStats.RotateSpeed;
+        AudioManager.instance.PlayMusic(_backgroundMusic);
     }
 
     void Update()
     {
+       
         RecordControls();
         GroundCheck();
-        if (!isDodging)
+        if (!isDodging && !isAttacking)
         {
             PlayerMovement();
         }
@@ -114,9 +118,9 @@ public class PlayerController : MonoBehaviour
         {
             BecomeInvisible();
         }
-
         if (_playerInput.PlayerMain.Attack.triggered)
         {
+            Debug.Log("ataca");
             SystemCombo();
         }
     }
@@ -194,8 +198,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        isDodging = true;
+        isAttacking = true;
         float timer = 0;
+        AudioManager.instance.PlaySFX(_punchSFX);
         while (timer < 0.5f)
         {
             Vector3 dir = (transform.forward * _attackSpeed) + (Vector3.up * velocityY);
@@ -203,7 +208,7 @@ public class PlayerController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        isDodging = false;
+        isAttacking = false;
     }
 
     private void StopDash()
@@ -217,9 +222,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_dodgeTime);
         _uCanDodge = true;
     }
-    
 
     #endregion
+
     void StateButton(bool activateState)
     {
         _onScreenButton.enabled = activateState;
@@ -228,7 +233,6 @@ public class PlayerController : MonoBehaviour
         _buttonTransparency.Transparentbutton(byteNumber);
     }
 
-    
     private void BecomeInvisible()
     {
         if (_invisibleCounter > 0)
