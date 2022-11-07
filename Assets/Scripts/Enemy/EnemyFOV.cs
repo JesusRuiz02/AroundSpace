@@ -55,7 +55,7 @@ public class EnemyFOV : MonoBehaviour
         {
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * _powerBullet, ForceMode.Acceleration);
         }
-        Destroy(bullet, 10f);
+        Destroy(bullet, 5f);
     }
 
     private void Update()
