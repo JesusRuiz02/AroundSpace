@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InvisibleFruit : MonoBehaviour
@@ -12,4 +13,12 @@ public class InvisibleFruit : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Combat") || other.gameObject.CompareTag("Player"))
+        {
+            _playerController.AddInvisibleCounter();
+            Destroy(gameObject);
+        }
+    }
 }

@@ -27,7 +27,7 @@ public class NpcHealth : MonoBehaviour
         _health -= 25;
        if(_health <=0 )
         {
-            _enemyStats.TurnOffScripts();
+            _enemyStats.StateScripts();
             animator.SetTrigger("Die");
             Destroy(gameObject, 2f);
         }

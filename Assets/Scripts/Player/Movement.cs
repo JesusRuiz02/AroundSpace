@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
             transform.Rotate(0,-0.1f,0 *Time.deltaTime * 0.1f);  
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+       /* if (Input.GetKey(KeyCode.LeftShift))
         {
             isturboOn = true;
             transform.Translate(Vector3.forward *Time.deltaTime* speed * 2);
@@ -38,6 +38,6 @@ public class Movement : MonoBehaviour
             isturboOn = false;
             _turbo1.SetActive(false);
             _turbo2.SetActive(false);
-        }
+        }*/
     }
 }

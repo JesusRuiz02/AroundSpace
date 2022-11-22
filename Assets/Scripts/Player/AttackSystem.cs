@@ -10,12 +10,13 @@ public class AttackSystem : MonoBehaviour
    {
       _rigidbody = GetComponent<Rigidbody>();
    }
-   private void OnCollisionEnter(Collision collision)
+   private void OnTriggerEnter(Collider other)
    {
- 
-      if (collision.gameObject.CompareTag("Enemy"))
+      if (other.gameObject.CompareTag("Enemy"))
       {
-         collision.gameObject.GetComponent<NpcHealth>().LostHealth();
+         other.gameObject.GetComponent<NpcHealth>().LostHealth();
+         other.gameObject.GetComponent<Rigidbody>().AddForce((-transform.up) * other.gameObject.GetComponent<EnemyStats>().KnockBackForce);
+         Debug.Log("pego");
       }
    }
 }

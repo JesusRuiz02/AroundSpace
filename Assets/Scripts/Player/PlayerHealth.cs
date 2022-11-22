@@ -12,8 +12,10 @@ public class PlayerHealth : MonoBehaviour
     private bool isInmune = false;
     [SerializeField] private Image _HurtImage = default;
     [SerializeField] private GameObject SceneManager = default;
+    [SerializeField] private GameObject _gameoverCanvas = default;
     [SerializeField] private AudioClip _audioHurt = default;
     private ChangeScene _changeScene;
+    private PlayerController _playerController;
     private PlayerStats _playerStats;
     [Header("RegenVoid")]
     [SerializeField] private float _regenRate = 1;
@@ -25,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _changeScene = SceneManager.GetComponent<ChangeScene>();
+        _playerController = GetComponent<PlayerController>();
         _playerStats = GetComponent<PlayerStats>();
         _maxHealth = _playerStats.Health;
         _currentHealth = _maxHealth;
@@ -45,7 +48,9 @@ public class PlayerHealth : MonoBehaviour
         if  (_currentHealth <= 0)
         {
             _animator.SetTrigger("Dead");
-            Destroy(gameObject,4f);
+            _gameoverCanvas.SetActive(true);
+            _playerController.enabled = false;
+
         }
        
     }
@@ -67,6 +72,11 @@ public class PlayerHealth : MonoBehaviour
     private void UpdateHealth()
     {
         float alph = (1 - (_currentHealth / _maxHealth)) * 255;
+        alph = Mathf.Round(alph);
+        if (alph > 255)
+        {
+            alph = 255;
+        }
         byte alpha = Convert.ToByte(alph);
         _HurtImage.color = new Color(255, 255, 255, alpha);     
     }

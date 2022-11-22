@@ -90,6 +90,18 @@ public class PlayerController : MonoBehaviour
         AudioManager.instance.PlayMusic(_backgroundMusic);
     }
 
+    private void FixedUpdate()
+    {
+        if (!_uCanDodge || !_groundedPlayer)
+        {
+            StateButton(false);
+        }
+        else
+        {
+            StateButton(true);
+        }
+    }
+
     void Update()
     {
        
@@ -102,8 +114,9 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
         if (_playerInput.PlayerMain.Dodge.triggered)
         {
-            if (_uCanDodge)
+            if (_uCanDodge && _groundedPlayer)
             {
+                
                 if (direction.magnitude != 0) //Only if the character is moving can dodge
                 {
                     StartCoroutine(Dodge()); 
@@ -112,15 +125,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        bool activeState = _groundedPlayer;
-        StateButton(activeState);
+     
         if (_playerInput.PlayerMain.Invisble.triggered)
         {
             BecomeInvisible();
         }
         if (_playerInput.PlayerMain.Attack.triggered)
         {
-            Debug.Log("ataca");
             SystemCombo();
         }
     }
@@ -225,10 +236,10 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    void StateButton(bool activateState)
+    void StateButton(bool activateButton)
     {
-        _onScreenButton.enabled = activateState;
-        var transparentValue = _groundedPlayer ? 255 : 127; //Define the transparency of the button
+        _onScreenButton.enabled = activateButton;
+        var transparentValue = activateButton ? 255 : 127; //Define the transparency of the button
         var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
         _buttonTransparency.Transparentbutton(byteNumber);
     }

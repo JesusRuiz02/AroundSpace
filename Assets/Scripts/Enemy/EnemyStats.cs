@@ -7,6 +7,7 @@ public class EnemyStats : MonoBehaviour
        public float AttackDelay = 1f;
        public int Damage = 5;
        public float AttackRadius = 1.5f;
+       public float KnockBackForce = 300f;
        // NavMeshAgent Configs
        public float AIUpdateInterval = 0.1f;
    
@@ -30,7 +31,7 @@ public class EnemyStats : MonoBehaviour
         _enemyFOV = GetComponent<EnemyFOV>();
     }
 
-    public void TurnOffScripts()
+    public void StateScripts()
     {
         _animalAI.enabled = false;
         _enemyFOV.enabled = false;
