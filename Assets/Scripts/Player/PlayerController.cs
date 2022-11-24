@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _radiusdetection = 0.1f;
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private GameObject _buttonDodge = default;
-    
+    [SerializeField] private GameObject _attackButton = default;
+
     [Header("Scripts")] 
     private PlayerHealth _playerHealth;
     private ButtonTransparency _buttonTransparency;
@@ -81,8 +82,6 @@ public class PlayerController : MonoBehaviour
         _cameraMain = Camera.main.transform;
         _animator = GetComponent<Animator>();
         dodgeTimer = 1;
-        _onScreenButton = _buttonDodge.GetComponent<OnScreenButton>();
-        _buttonTransparency = _buttonDodge.GetComponent<ButtonTransparency>();
         _movespeed = _playerStats.PlayerSpeed;
         _jumpForce = _playerStats.JumpForce;
         _dodgeTime = _playerStats.DodgeTimer;
@@ -92,19 +91,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_uCanDodge || !_groundedPlayer)
-        {
-            StateButton(false);
-        }
-        else
-        {
-            StateButton(true);
-        }
+       if (!_uCanDodge || !_groundedPlayer) 
+       {
+            StateButton(false, _buttonDodge);
+       }
+       else
+       {
+            StateButton(true, _buttonDodge);
+       }
     }
 
     void Update()
     {
-       
         RecordControls();
         GroundCheck();
         if (!isDodging && !isAttacking)
@@ -116,7 +114,6 @@ public class PlayerController : MonoBehaviour
         {
             if (_uCanDodge && _groundedPlayer)
             {
-                
                 if (direction.magnitude != 0) //Only if the character is moving can dodge
                 {
                     StartCoroutine(Dodge()); 
@@ -236,12 +233,16 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    void StateButton(bool activateButton)
+    void StateButton(bool activateButton, GameObject ButtonDisable )
     {
-        _onScreenButton.enabled = activateButton;
-        var transparentValue = activateButton ? 255 : 127; //Define the transparency of the button
-        var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte 
+        _onScreenButton = ButtonDisable.GetComponent<OnScreenButton>(); 
+        _buttonTransparency = ButtonDisable.GetComponent<ButtonTransparency>();
+       _onScreenButton.enabled = activateButton;
+        var transparentValue = activateButton ? 255 : 0; //Define the transparency of the button
+        var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte s
         _buttonTransparency.Transparentbutton(byteNumber);
+        Debug.Log(ButtonDisable);
+        Debug.Log(activateButton);
     }
 
     private void BecomeInvisible()
@@ -267,7 +268,7 @@ public class PlayerController : MonoBehaviour
         {
             _noAttack++;
         }
-
+       
         if (_noAttack == 1)
         {
             _animator.SetInteger("AttackSystem",1);
