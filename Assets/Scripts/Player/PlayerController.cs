@@ -233,16 +233,14 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    void StateButton(bool activateButton, GameObject ButtonDisable )
+    void StateButton(bool activateButton, GameObject ButtonDisable)
     {
         _onScreenButton = ButtonDisable.GetComponent<OnScreenButton>(); 
         _buttonTransparency = ButtonDisable.GetComponent<ButtonTransparency>();
        _onScreenButton.enabled = activateButton;
-        var transparentValue = activateButton ? 255 : 0; //Define the transparency of the button
+        var transparentValue = activateButton ? 255 : 127; //Define the transparency of the button
         var byteNumber =  Convert.ToByte(transparentValue); //Change int unit to byte s
         _buttonTransparency.Transparentbutton(byteNumber);
-        Debug.Log(ButtonDisable);
-        Debug.Log(activateButton);
     }
 
     private void BecomeInvisible()

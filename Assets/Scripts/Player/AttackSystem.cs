@@ -15,7 +15,6 @@ public class AttackSystem : MonoBehaviour
       if (other.gameObject.CompareTag("Enemy"))
       {
          other.gameObject.GetComponent<NpcHealth>().LostHealth();
-         other.gameObject.GetComponent<Rigidbody>().AddForce((-transform.up) * other.gameObject.GetComponent<EnemyStats>().KnockBackForce);
          Debug.Log("pego");
       }
    }

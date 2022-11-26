@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
         {
             _animator.SetTrigger("Dead");
             _gameoverCanvas.SetActive(true);
+            GetComponent<CapsuleCollider>().enabled = false;
             _playerController.enabled = false;
 
         }

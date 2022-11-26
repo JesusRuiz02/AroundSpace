@@ -10,7 +10,7 @@ public class EnemyStats : MonoBehaviour
        public float KnockBackForce = 300f;
        // NavMeshAgent Configs
        public float AIUpdateInterval = 0.1f;
-   
+
        public float Acceleration = 8;
        public float AngularSpeed = 120;
        // -1 means everything
