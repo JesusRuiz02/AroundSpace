@@ -15,6 +15,7 @@ TagManager:
   - Projectile
   - Environment
   - Music
+  - Fuel
   layers:
   - Default
   - TransparentFX
