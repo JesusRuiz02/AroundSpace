@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    [SerializeField] private AudioSource musicSource, SfxSource = default;
 
     private void Awake()
     {
@@ -18,10 +21,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
-    [SerializeField] private AudioSource musicSource, SfxSource = default;
-    
     public void PlaySFX(AudioClip clip)
     {
         SfxSource.PlayOneShot(clip);
@@ -31,4 +30,6 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = music;
         musicSource.Play();
     }
+
+  
 }

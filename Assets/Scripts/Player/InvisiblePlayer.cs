@@ -16,7 +16,7 @@ public class InvisiblePlayer : MonoBehaviour
   {
       gameObject.layer = _ignore;
       ChangingLayerChildren(_ignore);
-      yield return new WaitForSeconds(3f);
+      yield return new WaitForSeconds(5f);
       ChangingLayerChildren(_objective);
       gameObject.layer = _objective;
   }

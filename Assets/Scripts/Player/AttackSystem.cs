@@ -1,11 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class AttackSystem : MonoBehaviour
 {
    [SerializeField] private Rigidbody _rigidbody;
    private Collider _boxcollider;
-
    private void Start()
    {
       _rigidbody = GetComponent<Rigidbody>();
@@ -14,8 +14,10 @@ public class AttackSystem : MonoBehaviour
    {
       if (other.gameObject.CompareTag("Enemy"))
       {
-         other.gameObject.GetComponent<NpcHealth>().LostHealth();
-         Debug.Log("pego");
+         other.GetComponent<NpcHealth>().KnockBack(gameObject);
+        other.gameObject.GetComponent<NpcHealth>().LostHealth();
       }
    }
+
+   
 }

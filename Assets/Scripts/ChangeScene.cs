@@ -34,6 +34,11 @@ public class ChangeScene : MonoBehaviour
         RunningState(CurrentState);
         _CanvasPause.SetActive(activeState);
     }
+
+    public void PauseSettings(bool State)
+    {
+        _CanvasPause.SetActive(State);
+    }
     
     private void Start()
     {
