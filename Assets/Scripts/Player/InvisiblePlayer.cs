@@ -23,13 +23,14 @@ public class InvisiblePlayer : MonoBehaviour
       gameObject.layer = _ignore;
       ChangingLayerChildren(_ignore);
       yield return new WaitForSeconds(2f);
-      while (_timer >= 0.1f)
+      while (timer >= 0.1f)
       {
           invisibleCanvas.SetActive(false);
           yield return new WaitForSeconds(0.1f);
           invisibleCanvas.SetActive(true);
           yield return new WaitForSeconds(timer);
           timer -= 0.1f;
+          Debug.Log(timer);
       }
       invisibleCanvas.SetActive(false);
       ChangingLayerChildren(_objective);
