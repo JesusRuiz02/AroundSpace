@@ -47,8 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip _punchSFX;
     [SerializeField] private AudioClip _kickSFX;
     [SerializeField] private AudioClip _finalKickSFX;
-    [SerializeField] private AudioClip _backgroundMusic;
-    
+
 
     [Header("SystemAttack")] 
     [SerializeField] private float _noAttack;
@@ -90,7 +89,6 @@ public class PlayerController : MonoBehaviour
         _jumpForce = _playerStats.JumpForce;
         _dodgeTime = _playerStats.DodgeTimer;
         _rotationSpeed = _playerStats.RotateSpeed;
-        AudioManager.instance.PlayMusic(_backgroundMusic);
     }
 
     private void FixedUpdate()

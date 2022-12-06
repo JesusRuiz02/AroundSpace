@@ -6,6 +6,8 @@ public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private GameObject _gameOverCanvas;
     [SerializeField] private GameObject _CanvasPause;
+    [SerializeField] private GameObject _settingsCanvas;
+    [SerializeField] private AudioClip _startMusic;
     private void OnTriggerEnter(Collider other)
     { 
         if(other.CompareTag("Planet"))
@@ -13,10 +15,10 @@ public class ChangeScene : MonoBehaviour
             Debug.Log("Hola");
             SceneManager.LoadScene(0);
         }
-        else if(other.CompareTag("SpaceShip"))
+        /*  else if(other.CompareTag("SpaceShip"))
         {
             ChangeSceneToSpace(1);
-        }
+        }*/
       
     }
     public void ChangeSceneToSpace(int numberScene)
@@ -28,22 +30,27 @@ public class ChangeScene : MonoBehaviour
         Time.timeScale = currentState;
     }
 
-    public void ActiveState(bool activeState)
+    public void ActiveState(bool activeState,GameObject canvas)
     {
-        float CurrentState = activeState ? 0 : 1;
-        RunningState(CurrentState);
-        _CanvasPause.SetActive(activeState);
+        float currentState = activeState ? 0 : 1;
+        RunningState(currentState);
+        canvas.SetActive(activeState);
+    }
+    
+    public void PauseSettings(bool state)
+    {
+        ActiveState(state, _CanvasPause);
     }
 
-    public void PauseSettings(bool State)
-    {
-        _CanvasPause.SetActive(State);
+    public void VolumeSettings(bool state)
+    { 
+        ActiveState(state, _settingsCanvas);
     }
     
     private void Start()
     {
         Time.timeScale = 1;
-      
+        AudioManager.instance.PlayMusic(_startMusic);
     }
 
     public void ActivateGameOver()

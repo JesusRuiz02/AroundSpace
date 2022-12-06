@@ -17,6 +17,7 @@ TagManager:
   - Music
   - Fuel
   - AppleTree
+  - SFX
   layers:
   - Default
   - TransparentFX
