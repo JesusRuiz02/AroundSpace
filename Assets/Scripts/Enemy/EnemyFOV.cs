@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,9 +21,10 @@ public class EnemyFOV : MonoBehaviour
     private AnimalAI _animalAI = default;
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
-
-   [SerializeField] private AudioClip _fireball;
-    private const string RangeAttack = "Cast Spell";
+    [SerializeField] private AudioClip _environmentMusic;
+    [SerializeField] private AudioClip _fireball;
+   [SerializeField] private AudioClip _actionMusic;
+   private const string RangeAttack = "Cast Spell";
     void Start()
     {
         _animator = GetComponent<Animator>();

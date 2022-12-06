@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     private PlayerTouchMovement _playerInput;
     private CharacterController controller;
+    [SerializeField] private Instructions _instructions;
     private Animator _animator = default;
     
     [Header("Players Stats")]
@@ -39,10 +40,13 @@ public class PlayerController : MonoBehaviour
     private bool _uCanDodge = true;
     private float velocityY = default;
     private float _invisibleCounter = default;
+    private int _maxInvisibleCounter;
     private Vector2 MovementInput;
     private Vector3 direction;
     private float _dodgeTime = default;
     [SerializeField] private AudioClip _punchSFX;
+    [SerializeField] private AudioClip _kickSFX;
+    [SerializeField] private AudioClip _finalKickSFX;
     [SerializeField] private AudioClip _backgroundMusic;
     
 
@@ -208,7 +212,6 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true;
         float timer = 0;
-        AudioManager.instance.PlaySFX(_punchSFX);
         while (timer < 0.5f)
         {
             Vector3 dir = (transform.forward * _attackSpeed) + (Vector3.up * velocityY);
@@ -256,6 +259,11 @@ public class PlayerController : MonoBehaviour
     public void AddInvisibleCounter()
     {
         _invisibleCounter++;
+        _maxInvisibleCounter++;
+        if (_maxInvisibleCounter == 3)
+        {
+            StartCoroutine(_instructions.LastInstructions());
+        }
         _invisibleText.text = _invisibleCounter.ToString("0");
     }
     
@@ -279,12 +287,14 @@ public class PlayerController : MonoBehaviour
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && _noAttack == 1)
         {
             _animator.SetInteger("AttackSystem",0);
+            AudioManager.instance.PlaySFX(_punchSFX);
             _canAttack = true;
             _noAttack = 0;
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && _noAttack >= 2)
         {
             _animator.SetInteger("AttackSystem",2);
+            AudioManager.instance.PlaySFX(_kickSFX);
             _canAttack = true;
         }
         else if ( _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && _noAttack == 2)
@@ -296,6 +306,7 @@ public class PlayerController : MonoBehaviour
         else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && _noAttack >= 3)
         {
             _animator.SetInteger("AttackSystem",3);
+            AudioManager.instance.PlaySFX(_finalKickSFX);
         }
         else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Hit3"))
         {
