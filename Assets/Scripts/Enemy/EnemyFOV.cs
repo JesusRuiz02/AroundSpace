@@ -76,7 +76,6 @@ public class EnemyFOV : MonoBehaviour
         {
             Transform target = rangeChecks[0].transform;
             _directionToTarget = (target.position - transform.position).normalized;
-
             if (Vector3.Angle(transform.forward, _directionToTarget) < _angle / 2) //Verify if the player is in the designed fov
             {
                 float distanceToTarge = Vector3.Distance(transform.position, target.position); // Minimum distance to see the target/pl
